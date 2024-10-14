@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chessboard</title>
+	<style>
+		.chessboard {
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		
+		.square {
+			width: 50px;
+			height: 50px;
+			background-color: #fff;
+			border: 1px solid black;
+			display: inline-block;
+		}
+		
+		.square:nth-child(even) {
+			background-color: #ccc;
+		}
+		
+		.square:nth-child(odd) {
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="chessboard">
+		<!-- Create 64 squares for the chessboard -->
+		<?php for ($i = 0; $i < 64; $i++): ?>
+			<div class="square"></div>
+		<?php endfor; ?>
+	</div>
+</body>
+</html>
+body {
+	font-family: Arial, sans-serif;
+}
+
+form {
+	width: 50%;
+	margin: 40px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+}
+
+select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+}
+
+button[type="button"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+button[type="button"]:hover {
+	background-color: #3e8e41;
+}
+
+#result {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+const num1Input = document.getElementById('num1');
+const operatorSelect = document.getElementById('operator');
+const num2Input = document.getElementById('num2');
+const calculateButton = document.getElementById('calculate');
+const resultParagraph = document.getElementById('result');
+
+calculateButton.addEventListener('click', calculate);
+
+function calculate() {
+	const num1 = parseFloat(num1Input.value);
+	const operator = operatorSelect.value;
+	const num2 = parseFloat(num2Input.value);
+	let result;
+
+	switch (operator) {
+		case '+':
+			result = num1 + num2;
+			break;
+		case '-':
+			result = num1 - num2;
+			break;
+		case '*':
+			result = num1 * num2;
+			break;
+		case '/':
+			result = num1 / num2;
+			break;
+		default:
+			result = 'Invalid operator';
+	}
+
+	resultParagraph.textContent = `Result: ${result}`;
+}
